@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
 import controller.UsuarioController;
 import model.Telefone;
 import model.Usuario;
@@ -51,6 +52,7 @@ public class UsuarioBean {
 		Usuario usuario = new Usuario(nome,email,senha,telefones);
 		usuarioController.salvar(usuario);
 		listar();
+		
 	}
 	
 	public void listar() {
