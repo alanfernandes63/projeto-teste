@@ -12,5 +12,7 @@ public interface GenericDaoInterface <T,ID extends Serializable>{
 	public T delete(T t);
 	
 	public T update(T t);
+	
+	public T findByUserName(String userName);
 
 }

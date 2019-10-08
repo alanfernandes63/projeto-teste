@@ -39,7 +39,6 @@ public class UsuarioBean {
 		this.email = email;
 		this.senha = senha;
 		this.telefones = telefones;
-		listar();
 	}
 	
 	
@@ -51,11 +50,11 @@ public class UsuarioBean {
 		telefones.add(telefoneFixo);
 		Usuario usuario = new Usuario(nome,email,senha,telefones);
 		usuarioController.salvar(usuario);
-		//listar();
+		listar();
 	}
 	
 	public void listar() {
-		usuarios = usuarioController.listar();
+			usuarios = usuarioController.listar();
 	}
 	
 	public void deletar(Usuario usuario) {

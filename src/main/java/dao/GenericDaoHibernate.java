@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import util.HibernateUtil;
 
@@ -26,6 +27,7 @@ public abstract class GenericDaoHibernate <T,ID extends Serializable> implements
 			Transaction transection = session.beginTransaction();
 			session.delete(t);
 			transection.commit();
+			session.close();
 			return t;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -41,6 +43,7 @@ public abstract class GenericDaoHibernate <T,ID extends Serializable> implements
 			Transaction transection = session.beginTransaction();
 			session.save(t);
 			transection.commit();
+			session.close();
 			return t;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -56,6 +59,7 @@ public abstract class GenericDaoHibernate <T,ID extends Serializable> implements
 			Transaction transaction = session.beginTransaction();
 			list = session.createQuery("select o from " + classe.getSimpleName() + " o").getResultList();
 			transaction.commit();
+			session.close();
 			return list;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -71,11 +75,36 @@ public abstract class GenericDaoHibernate <T,ID extends Serializable> implements
 			Transaction transection = session.beginTransaction();
 			session.save(t);
 			transection.commit();
+			session.close();
 			return t;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	public T findByUserName(String userName) {
+		T t;
+		try {
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Query q = session.createQuery("from Usuario where email = :cemail");
+			q.setParameter("cemail", userName);
+			Transaction transaction = session.beginTransaction();
+			t = (T) q.getSingleResult();
+			transaction.commit();
+			session.close();
+			return t;
+		} catch (Exception e) {
+			// TODO: handle exception
+			//System.out.println(e);
+			//e.printStackTrace();
+			
+		}
+		
+		
+		
 		return null;
 	}
 	

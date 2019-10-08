@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import dao.UsuarioDao;
+import filter.CodificaSenha;
 import model.Usuario;
 
 public class UsuarioController {
@@ -19,8 +20,7 @@ public class UsuarioController {
 	
 	public Usuario salvar(Usuario usuario) {
 		String senha = usuario.getSenha();
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		usuario.setSenha(encoder.encode(senha));
+		CodificaSenha.encrypt.encode(senha);
 		return usuarioDao.save(usuario);
 	}
 	
@@ -34,6 +34,10 @@ public class UsuarioController {
 	
 	public Usuario deletar(Usuario usuario) {
 		return usuarioDao.delete(usuario);
+	}
+	
+	public Usuario buscarPorEmail(String email) {
+		return usuarioDao.findByUserName(email);
 	}
 	
 
