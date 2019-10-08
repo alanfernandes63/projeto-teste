@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+</h:head> 
+<body> 
+	<div class="container-flex">
+		<div class="row mt-5">
+		<dir class="col-md-1"></dir>
+		<div class="col-md-6">
+		<h:form>
+		<h1>Cadastro de usuário</h1>
+			<h:outputLabel value="Nome:" />
+			<h:inputText value="#{usuarioBean.nome}" styleClass="form-control"/>
+			<h:outputLabel value="Email:" />
+			<h:inputText value="#{usuarioBean.email}" styleClass="form-control"/>
+			<h:outputLabel value="Senha:" />
+			<h:inputText value="#{usuarioBean.senha}" styleClass="form-control"/>
+			<h:outputLabel value="Repetir senha" />
+			<h:inputText value="#{usuarioBean.nome}" styleClass="form-control"/>
+			<div class="row">
+			<div class="col-md-2">
+			<h:outputLabel value="DDD:" />
+			<h:inputText value="#{usuarioBean.dddFixo}" styleClass="form-control"/>
+			</div>
+			<div class="col-md-10">
+			<h:outputLabel value="Telefone fixo:"/>
+			<h:inputText value="#{usuarioBean.numeroFixo}" styleClass="form-control"/>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-2">
+			<h:outputLabel value="DDD:" />
+			<h:inputText value="#{usuarioBean.dddCelular}" styleClass="form-control"/>
+			</div>
+			<div class="col-md-10">
+			<h:outputLabel value="Celular:"/>
+			<h:inputText value="#{usuarioBean.numeroCelular}" styleClass="form-control"/>
+			</div>
+			</div>
+			<h:commandButton action="#{usuarioBean.salvar()}" value="Salvar" styleClass="mt-2 btn btn-success col-sm-12 col-md-12"/>
+			</h:form>
+		</div>
+		<div class="col-md-3"></div>
+		</div>
+	</div>
+</body> 
+</html>

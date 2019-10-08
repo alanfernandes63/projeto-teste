@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      > 
+
+<h:head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--  
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+-->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></link>
+</h:head> 
+<body>
+	<div class="container-flex">
+		<div class="row">
+			<div class="col col-md-3"></div>
+			<div class="col col-md-6">
+				<h:form>
+				<table id="example" class="table">
+					<thead>
+						<tr>
+						<th>Id</th>
+						<th>Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+					<ui:repeat var="usuario" value="#{usuarioBean.usuarios}">
+					<tr>
+					<td>#{usuario.id}</td>
+					<td>#{usuario.nome}</td>
+					</tr>
+					</ui:repeat>
+					</tbody>
+				</table>
+				</h:form>
+			</div>
+			<div class="col col-md-3"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#example').DataTable( {
+	    	"filter": false,
+	    	paginate : {
+				"previous" : "Anterior",
+				"next" : "Próximo",
+				"entries" : "entradas"
+			}
+   
+	    } );
+	} );
+	</script>
+	
+</body>
+</html>
