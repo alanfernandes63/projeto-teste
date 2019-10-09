@@ -89,7 +89,7 @@ public abstract class GenericDaoHibernate <T,ID extends Serializable> implements
 		try {
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			Query q = session.createQuery("from Usuario where email = :cemail");
+			Query q = session.createQuery("from " + classe.getSimpleName() + " where email = :cemail");
 			q.setParameter("cemail", userName);
 			Transaction transaction = session.beginTransaction();
 			t = (T) q.getSingleResult();

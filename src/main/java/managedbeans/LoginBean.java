@@ -1,13 +1,9 @@
 package managedbeans;
 
-import java.nio.file.attribute.UserPrincipalLookupService;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +12,7 @@ import controller.UsuarioController;
 import filter.CodificaSenha;
 import model.Usuario;
 
-@ApplicationScoped
+@SessionScoped
 @ManagedBean(name="loginBean")
 public class LoginBean {
 	
@@ -37,7 +33,7 @@ public class LoginBean {
 		sessao.setAttribute("logado", usuarioLogado);
 	}
 	
-	public void autenticar() {
+	public String autenticar() {
 		Usuario user =  usuarioController.buscarPorEmail(nomeUsuario);
 		BCryptPasswordEncoder encript = new BCryptPasswordEncoder();
 		if(user != null) {
@@ -48,6 +44,7 @@ public class LoginBean {
 			if(encript.matches(user.getSenha(), CodificaSenha.encrypt.encode(senha))) {
 				usuarioLogado = true;
 				sessao.setAttribute("logado", usuarioLogado);
+				return ("/restrito/listarUsuario.xhtml");
 				
 			}
 			else 
@@ -55,6 +52,7 @@ public class LoginBean {
 		}
 		else
 			System.out.println("usuario não encontrado!");
+		return null;
 	}
 	
 	public String getNomeUsuario() {

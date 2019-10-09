@@ -9,12 +9,14 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+@WebFilter(urlPatterns="/restrito/*")
 public class LoginFilter implements Filter{
+	
 
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
@@ -31,15 +33,12 @@ public class LoginFilter implements Filter{
 		FacesContext fct = FacesContext.getCurrentInstance();
 		HttpSession sessao = (HttpSession) req.getSession();
 		boolean logado =  (Boolean) sessao.getAttribute("logado");
-		//boolean logado = (Boolean) fct.getExternalContext().getApplicationMap().get("logado");
 		System.out.println(logado);
 		String url = req.getRequestURL().toString();
-		//if(url.contains("/restrito") && logado == true) { 
+		if(url.contains("/restrito") && logado == false) { 
 			System.out.println("logado pode passar");
-			//res.sendRedirect(req.getSession().getServletContext().getContextPath() + "/restrito/listarUsuario.xhtml");
-		//req.getRequestDispatcher(req.getSession().getServletContext().getContextPath() + "/restrito/listarUsuario.xhtml);
-			//}
-		//else System.out.println("deslogado");
+			fct.getCurrentInstance().getExternalContext().redirect("/cadastroUsuario.xhtml");
+			}
 		
 	}
 
