@@ -15,13 +15,13 @@ public class TelefoneDao extends GenericDaoHibernate<TelefoneDao, Long>{
 	}
 	
 	
-	public Telefone findGetTelefone(String userName){
+	public Telefone findGetTelefone(){
 		Telefone t;
 		try {
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Query q = session.createQuery("from Telefone where id = :cemail");
-			q.setParameter("cemail", userName);
+			//q.setParameter("cemail", userName);
 			Transaction transaction = session.beginTransaction();
 			t = (Telefone) q.getSingleResult();
 			transaction.commit();

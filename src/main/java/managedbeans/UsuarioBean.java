@@ -49,6 +49,7 @@ public class UsuarioBean {
 		Telefone tefoneCelular = new Telefone(dddCelular,numeroCelular,"Celular");
 		telefones.add(tefoneCelular);
 		telefones.add(telefoneFixo);
+		System.out.println("senha:>>>>>>>>>>" + senha);
 		Usuario usuario = new Usuario(nome,email,senha,telefones);
 		usuarioController.salvar(usuario);
 		listar();

@@ -41,7 +41,7 @@ public class LoginBean {
 			System.out.println("senha:" + senha);
 			System.out.println("senha:banco" + user.getSenha() + "senha:" + CodificaSenha.encrypt.encode(senha));
 			
-			if(encript.matches(user.getSenha(), CodificaSenha.encrypt.encode(senha))) {
+			if(encript.matches(senha, user.getSenha())) {
 				usuarioLogado = true;
 				sessao.setAttribute("logado", usuarioLogado);
 				return ("/restrito/listarUsuario.xhtml");

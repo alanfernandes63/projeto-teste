@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 
@@ -16,6 +17,8 @@ public class Telefone {
 	private int ddd;
 	private String numero;
 	private String tipo;
+	@ManyToOne
+	private Usuario usuario;
 	
 	public Telefone() {
 		super();
